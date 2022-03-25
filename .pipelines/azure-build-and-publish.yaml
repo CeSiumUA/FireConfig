@@ -37,3 +37,10 @@ steps:
     configuration: $(buildConfiguration)
     nobuild: true
     verbosityPack: Normal
+
+- task: AzureCloudPowerShellDeployment@1
+  inputs:
+    EnableAdvancedStorageOptions: false
+    CsPkg: 
+    slotName: 'Production'
+    AllowUpgrade: true
