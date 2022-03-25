@@ -1,7 +1,7 @@
 ﻿using FireConfig.Options;
 using Microsoft.Extensions.Configuration;
 
-namespace FireConfig;
+namespace FireConfig.MongoDb;
 
 public class MongoConfigurationSource : IConfigurationSource
 {

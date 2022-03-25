@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace FireConfig;
+namespace FireConfig.MongoDb;
 
 public class MongoConfigurationProvider : ConfigurationProvider
 {
