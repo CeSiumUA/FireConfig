@@ -1,0 +1,40 @@
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  solution: '**/*.sln'
+  buildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore 🔃
+  inputs:
+    command: 'restore'
+    projects: '$(solution)'
+  
+- task: DotNetCoreCLI@2
+  displayName: Build 🏗️
+  inputs:
+    command: 'build'
+    projects: '$(solution)'
+    arguments: '-c $(buildConfiguration) --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: Test 🧪
+  inputs:
+    command: 'test'
+    projects: '$(solution)'
+    arguments: '-c $(buildConfiguration) --no-build'
+
+- task: DotNetCoreCLI@2
+  displayName: 🏭 Pack NuGets
+  inputs:
+    command: pack
+    packagesToPack: '**/FireConfig.csproj'
+    configuration: $(buildConfiguration)
+    nobuild: true
+    verbosityPack: Normal
