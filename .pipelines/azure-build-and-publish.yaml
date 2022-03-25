@@ -30,10 +30,18 @@ steps:
     arguments: '-c $(buildConfiguration) --no-build'
 
 - task: DotNetCoreCLI@2
-  displayName: 🏭 Pack NuGets
+  displayName: Pack NuGets 🏭
   inputs:
     command: pack
     packagesToPack: '**/FireConfig.csproj'
     configuration: $(buildConfiguration)
     nobuild: true
     verbosityPack: Normal
+
+- task: NuGetCommand@2
+  displayName: Push NuGets 📌
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'PublicNuget'
