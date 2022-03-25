@@ -38,9 +38,9 @@ steps:
     nobuild: true
     verbosityPack: Normal
 
-- task: AzureCloudPowerShellDeployment@1
+- task: NuGetCommand@2
   inputs:
-    EnableAdvancedStorageOptions: false
-    CsPkg: 
-    slotName: 'Production'
-    AllowUpgrade: true
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'a6a04245-951b-4ff2-8918-d887b5c75d49'
