@@ -30,7 +30,7 @@ steps:
     arguments: '-c $(buildConfiguration) --no-build'
 
 - task: DotNetCoreCLI@2
-  displayName: 🏭 Pack NuGets
+  displayName: Pack NuGets 🏭
   inputs:
     command: pack
     packagesToPack: '**/FireConfig.csproj'
@@ -39,6 +39,7 @@ steps:
     verbosityPack: Normal
 
 - task: NuGetCommand@2
+  displayName: Push NuGets 📌
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
