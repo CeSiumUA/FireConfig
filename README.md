@@ -28,7 +28,7 @@ In MongoDb, you need to structure records like this:
 
 ```JSON
 {
-    "_id": "..."
+    "_id": "...",
     "ProjectCommon": {
         "ConnectionStrings": {
             "MongoDb": "<Your connection Id string>",
