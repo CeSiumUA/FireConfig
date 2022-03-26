@@ -19,3 +19,60 @@ Via Package Manager:
 ```PowerShell
 Install-Package FireConfig
 ```
+
+[NuGet](https://www.nuget.org/packages/FireConfig/)
+
+## Usage
+
+In MongoDb, you need to structure records like this:
+
+```JSON
+{
+    "_id": "..."
+    "ProjectCommon": {
+        "ConnectionStrings": {
+            "MongoDb": "<Your connection Id string>",
+            "NpgSql": "<Your connection Id string>"
+        },
+        "TokenOptions": {
+            "SigningKey": "<Your very very secret key>"
+        },
+        "SomeTestOptions": [
+            {
+                "Test1": 1
+            }, {
+                "Test2": 2
+            }, "Test3"]
+    }
+}
+```
+
+ProjectCommon is a "Key" here, you could specify your keys in options (more information below)
+All the keys are trimmed after readingm, they are used to limit records which your app will read from DB
+Something similar you could see while using Azure AppConfiguration
+
+```C#
+// initialize options
+var mongoConfigOptions = configuration
+                .GetSection(MongoConfigConnectionOptions.MongoConfigConnectionOptionsName)
+                .Get<MongoConfigConnectionOptions>();
+
+// add new configuration to ConfigureHostBuilder
+builder.ConfigureAppConfiguration(configBuilder =>
+            {
+                configBuilder.AddMongoDbConfiguration(mongoConfigOptions);
+            });
+```
+
+Typical options loks like:
+
+```JSON
+"MongoConfigConnectionOptions": {
+    "ConnectionString": "mongodb://localhost:27017",
+    "DatabaseName": "configdb",
+    "CollectionName": "configuration",
+    "Keys": [
+      "ProjectCommon"
+    ]
+  }
+```
