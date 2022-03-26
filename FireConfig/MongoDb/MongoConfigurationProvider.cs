@@ -82,6 +82,16 @@ public class MongoConfigurationProvider : ConfigurationProvider
                 var digits = match.Value.Replace("[", string.Empty).Replace("]", string.Empty);
                 path = path.Replace(match.Value, $":{digits}");
             }
+
+            foreach (var key in _options.Keys ?? new List<string>())
+            {
+                if (path.StartsWith(key))
+                {
+                    path = path[^key.Length..];
+                    break;
+                }
+            }
+            
             var value = jNode.AsValue().ToString();
             Data.Add(path, value);
         }
