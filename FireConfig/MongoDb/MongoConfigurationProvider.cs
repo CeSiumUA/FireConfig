@@ -87,7 +87,7 @@ public class MongoConfigurationProvider : ConfigurationProvider
             {
                 if (path.StartsWith(key))
                 {
-                    path = path[^key.Length..];
+                    path = path.Substring(key.Length + 1);
                     break;
                 }
             }
