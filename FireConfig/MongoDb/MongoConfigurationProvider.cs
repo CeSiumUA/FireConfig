@@ -35,6 +35,7 @@ public class MongoConfigurationProvider : ConfigurationProvider
     {
         foreach (var doc in documents)
         {
+            doc.Remove("_id");
             var json = doc.ToJson();
             if (!string.IsNullOrEmpty(json))
             {
