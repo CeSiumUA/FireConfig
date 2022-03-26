@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.5</PackageVersion>
+        <PackageVersion>1.0.6</PackageVersion>
         <Title>MultiConfiguration Provider</Title>
         <Description>Configuration provider, currently includes: MongoDb</Description>
         <PackageProjectUrl>https://github.com/CeSiumUA/FireConfig.git</PackageProjectUrl>
