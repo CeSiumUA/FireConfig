@@ -8,6 +8,8 @@
         <PackageVersion>1.0.5</PackageVersion>
         <Title>MultiConfiguration Provider</Title>
         <Description>Configuration provider, currently includes: MongoDb</Description>
+        <PackageProjectUrl>https://github.com/CeSiumUA/FireConfig.git</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/CeSiumUA/FireConfig.git</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
